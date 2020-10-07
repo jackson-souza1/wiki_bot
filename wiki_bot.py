@@ -2,17 +2,19 @@ import bs4 as bs
 import urllib.request
 import re
 import nltk
-import numpy as np
 import random
 import string
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 nltk.download('punkt')
-import requests
 import spacy
 from flask import Flask, request, jsonify
+from configparser import ConfigParser
 
-TOKEN_API = '1190152532:AAGdVIymsqaNvsNMTbSstb6Y7eK1ZiFsgU4'
+config = ConfigParser()
+config.read('config.ini')
+
+TOKEN_API = config['movidesk']['TOKEN_API']
 
 dados = urllib.request.urlopen('https://pt.wikipedia.org/wiki/Intelig%C3%AAncia_artificial')
 dados = dados.read()
